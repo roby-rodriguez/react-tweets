@@ -1,0 +1,72 @@
+'use strict';
+
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+var bootstrapPath = __dirname + '/node_modules/bootstrap/dist/css';
+var bootstrapSocialPath = __dirname + '/node_modules/bootstrap-social';
+var fontAwesomePath = __dirname + '/node_modules/font-awesome/css';
+
+module.exports = {
+  devtool: 'eval',
+  entry: [
+    'webpack-hot-middleware/client?reload=true',
+    path.resolve(__dirname, 'src/app')
+  ],
+  output: {
+    path: path.resolve(__dirname, '/dist/'),
+    filename: '[name].js',
+    publicPath: '/'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.tpl.html',
+      inject: 'body',
+      filename: 'index.html',
+      favicon: 'src/favicon.png'
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    })
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          "presets": ["react", "es2015", "stage-0", "react-hmre"]
+        }
+      }, {
+        test: /\.json?$/,
+        loader: 'json'
+      }, {
+        test: /\.css$/,
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
+      },
+      { test: /\.less$/, loader: 'style!css!less' },
+      { test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+      { test: /\.(png|jpg|jpeg|gif|ico)$/, loader: 'url-loader?limit=10000' }
+    ]
+  },
+
+  // Automatically transform files with these extensions
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.css'],
+    modulesDirectories: ['node_modules', bootstrapPath, bootstrapSocialPath, fontAwesomePath]
+  },
+
+  // Additional plugins for CSS post processing using postcss-loader
+  postcss: [
+    require('autoprefixer'), // Automatically include vendor prefixes
+    require('postcss-nested') // Enable nested rules, like in Sass
+  ]
+};
