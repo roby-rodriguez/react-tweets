@@ -1,12 +1,12 @@
-import React from "react";
-import { Route, IndexRoute } from "react-router";
+import React from "react"
+import { Route, IndexRoute } from "react-router"
 
-import BaseLayout from "../components/Base";
-import DashboardLayout from "../components/Dashboard";
+import BaseLayout from "../components/Base"
+import DashboardLayout from "../components/Dashboard"
 
-import DashboardOverviewPage from "../containers/pages/dashboard/Overview/Overview";
-import DashboardReportsPage from "../containers/pages/dashboard/Reports/Reports";
-import LoginPage from "../containers/pages/Login";
+import DashboardOverviewPage from "../containers/pages/dashboard/Overview/Overview"
+import DashboardReportsPage from "../containers/pages/dashboard/Reports/Reports"
+import LoginPage from "../containers/pages/Login"
 
 const routes = (
     <Route path="/" component={BaseLayout}>
@@ -20,4 +20,4 @@ const routes = (
     </Route>
 )
 
-export default routes;
+export default routes

@@ -1,44 +1,39 @@
-import React, { PropTypes, Component, cloneElement } from 'react';
-import Router, { Link, RouteHandler } from "react-router";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { PropTypes, Component, cloneElement } from 'react'
+import Router, { Link, RouteHandler } from "react-router"
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar } from "react-bootstrap";
-import $ from "jQuery";
-import classNames from "classnames";
-import userImage from "../../twitter.png";
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar } from "react-bootstrap"
+import $ from "jQuery"
+import classNames from "classnames"
+import userImage from "../../twitter.png"
 
-export default class HomePage extends Component {
+class HomePage extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      uiElementsCollapsed: true,
+      chartsElementsCollapsed: true,
+      multiLevelDropdownCollapsed: true,
+      thirdLevelDropdownCollapsed: true,
+      samplePagesCollapsed: true
+    }
+  }
     
   componentWillMount() {
-    this.setState({Height: $(window).height()});
+    this.setState({Height: $(window).height()})
   }
 
   componentDidMount() {
   }
 
   componentWillUnmount() {
-    $(window).unbind('resize',this.adjustResize);
-  }
-
-  static getInitialState() {
-    return {
-      uiElementsCollapsed: true,
-      chartsElementsCollapsed: true,
-      multiLevelDropdownCollapsed: true,
-      thirdLevelDropdownCollapsed: true,
-      samplePagesCollapsed: true
-    };
-  }
-
-  contextTypes: {
-    router: PropTypes.func
+    $(window).unbind('resize',this.adjustResize)
   }
 
   render() {
 
-    const { pathname } = this.props.location;
-
-    var title = <span><a href="http://startreact.com/" title="Start React" rel="home"><img src="http://startreact.com/wp-content/themes/dazzling-child/images/logo.png" alt="Start React" title="Start React" height="35px" />&nbsp;SB Admin React - StartReact.com</a></span>;
+    const { pathname } = this.props.location
     
     return (
         <div className="dashboard-page ui-view"> 
@@ -76,6 +71,8 @@ export default class HomePage extends Component {
             </div> 
           </div> 
         </div>
-    );
+    )
   }
 }
+
+export default HomePage

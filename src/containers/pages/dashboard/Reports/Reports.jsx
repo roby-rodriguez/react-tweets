@@ -1,6 +1,6 @@
-import React, { PropTypes, Component } from 'react';
-import { Link } from "react-router";
-import { Jumbotron } from 'react-bootstrap';
+import React, { PropTypes, Component } from 'react'
+import { Link } from "react-router"
+import { Jumbotron } from 'react-bootstrap'
 
 export default class Reports extends Component {
   render() {
@@ -18,6 +18,6 @@ export default class Reports extends Component {
           </Jumbotron> 
         </div>
       </div>
-    );
+    )
   }
 }

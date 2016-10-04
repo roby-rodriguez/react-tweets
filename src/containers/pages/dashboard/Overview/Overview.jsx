@@ -1,6 +1,6 @@
-import React, { PropTypes, Component } from 'react';
-import { Link } from "react-router";
-import { Jumbotron } from 'react-bootstrap';
+import React, { PropTypes, Component } from 'react'
+import { Link } from "react-router"
+import { Jumbotron } from 'react-bootstrap'
 
 export default class Overview extends Component {
   render() {
@@ -14,6 +14,6 @@ export default class Overview extends Component {
           <p> <a className="btn btn-primary btn-lg btn-outline btn-rounded">Learn more</a> </p> 
         </Jumbotron> 
       </div>
-    );
+    )
   }
 }
