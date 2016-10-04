@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar } from "react-bootstrap";
 import $ from "jQuery";
 import classNames from "classnames";
+import userImage from "../../twitter.png";
 
 export default class HomePage extends Component {
     
@@ -35,10 +36,6 @@ export default class HomePage extends Component {
 
   render() {
 
-    //console.log(this.context);
-
-    // var name = this.context.router.getCurrentPath();
-
     const { pathname } = this.props.location;
 
     var title = <span><a href="http://startreact.com/" title="Start React" rel="home"><img src="http://startreact.com/wp-content/themes/dazzling-child/images/logo.png" alt="Start React" title="Start React" height="35px" />&nbsp;SB Admin React - StartReact.com</a></span>;
@@ -49,8 +46,8 @@ export default class HomePage extends Component {
             <div className="row"> 
               <div className="col-sm-3 col-md-2 sidebar"> 
                 <div className="text-center"> 
-                  <h2 className="brand">Ani Theme <br /><small>Free React.js Edition</small></h2> 
-                  <img src={require("../../twitter.png")} className="user-avatar" />
+                  <h2 className="brand">React Tweets <br /><small>A Twitter API utility</small></h2>
+                  <img src={userImage} className="user-avatar" />
                   <br /> 
                   <Link to="/login" className="btn btn-white btn-outline btn-rounded btn-sm">Logout</Link> 
                 </div> 
@@ -61,19 +58,10 @@ export default class HomePage extends Component {
                   </li> 
                   <li>
                     <Link to="/dashboard/reports">Reports</Link>
-                  </li> 
-                  <li>
-                    <a href="http://startangular.com/product/ani-theme/">Free Angular version</a>
                   </li>
                   <li>
-                    <a href="http://www.strapui.com/ani-reactjs-theme">Premium React.js Edition</a>
-                  </li> 
-                  <li>
-                    <a href="http://www.strapui.com/ani-angularjs-theme">Premium AngularJS Edition</a>
-                  </li> 
-                  <li>
-                    <a href="http://www.strapui.com/themes/ani-laravel-theme/">Premium Laravel Edition</a>
-                  </li> 
+                    <a href="http://www.strapui.com/ani-reactjs-theme">Bootstrap theme for this site</a>
+                  </li>
                 </ul> 
               </div>
 

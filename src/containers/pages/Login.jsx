@@ -4,6 +4,7 @@ import {Panel, Input, Button} from 'react-bootstrap';
 import { History } from 'history';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import $ from "jQuery";
+import defaultImage from "../../twitter.png";
 
 export default class LoginPage extends React.Component {
 
@@ -22,8 +23,8 @@ export default class LoginPage extends React.Component {
         <div className="login-page ng-scope ui-view"> 
           <div className="row"> 
             <div className="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
-              <img src={require("../../twitter.png")} className="user-avatar" />
-              <h1>Ani Theme <small>Free React.js Edition</small></h1> 
+              <img src={defaultImage} className="user-avatar" />
+              <h1>React Tweets <small>A Twitter API utility</small></h1>
               <form role="form" onSubmit={this.handleLogin} className="ng-pristine ng-valid"> 
                 <div className="form-content"> 
                   <div className="form-group"> 
