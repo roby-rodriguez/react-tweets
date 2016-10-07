@@ -59,6 +59,9 @@
     "url-loader": "^0.5.6",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.2.0"
+    "webpack-hot-middleware": "^2.2.0",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.3",
+    "mongoose": "^4.6.3"
   }
 }
