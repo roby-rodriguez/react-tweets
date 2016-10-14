@@ -21,14 +21,14 @@ class HomePage extends Component {
   }
     
   componentWillMount() {
-    this.setState({Height: $(window).height()})
+    // this.setState({Height: $(window).height()})
   }
 
   componentDidMount() {
   }
 
   componentWillUnmount() {
-    $(window).unbind('resize',this.adjustResize)
+    // $(window).unbind('resize',this.adjustResize)
   }
 
   render() {

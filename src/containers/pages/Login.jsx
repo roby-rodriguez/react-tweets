@@ -1,5 +1,5 @@
 import React from 'react'
-import Router from 'react-router'
+import Router, { Link } from 'react-router'
 import {Panel, Input, Button} from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import $ from "jQuery"
@@ -23,17 +23,9 @@ export default class LoginPage extends React.Component {
             <div className="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
               <img src={defaultImage} className="user-avatar" />
               <h1>React Tweets <small>A Twitter API utility</small></h1>
-              <form role="form" onSubmit={this.handleLogin} className="ng-pristine ng-valid"> 
-                <div className="form-content"> 
-                  <div className="form-group"> 
-                    <input type="text" className="form-control input-underline input-lg" placeholder="Email" /> 
-                  </div> 
-                  <div className="form-group"> 
-                    <input type="password" className="form-control input-underline input-lg" placeholder="Password" /> 
-                  </div> 
-                </div> 
-                <button type="submit" className="btn btn-white btn-outline btn-lg btn-rounded">Login</button> 
-              </form> 
+              <a href="/login/twitter" className="btn btn-white btn-outline btn-lg btn-rounded">
+                <i className="fa fa-twitter"></i> Login with Twitter
+              </a>
             </div> 
           </div> 
         </div>

@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "test": "",
-    "start": "babel-node server --presets es2015,stage-2",
+    "start": "babel-node server --presets react,es2015,stage-2",
+    "debug": "babel-node-debug server.js --presets es2015,stage-2",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
     "eslint": "eslint .",
     "jscs": "jscs ."
@@ -62,6 +63,7 @@
     "webpack-hot-middleware": "^2.2.0",
     "passport": "^0.3.2",
     "passport-twitter": "^1.0.3",
-    "mongoose": "^4.6.3"
+    "mongoose": "^4.6.3",
+    "ejs": "^2.5.1"
   }
 }
