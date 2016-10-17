@@ -5,7 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar } from "react-bootstrap"
 import $ from "jquery"
 import classNames from "classnames"
-import userImage from "../../twitter.png"
+const userImage = "../../twitter.png"
 
 class HomePage extends Component {
 

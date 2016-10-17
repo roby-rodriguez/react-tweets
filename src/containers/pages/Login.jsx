@@ -3,7 +3,7 @@ import Router, { Link } from 'react-router'
 import {Panel, Input, Button} from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import $ from "jquery"
-import defaultImage from "../../twitter.png"
+const defaultImage = "../../twitter.png"
 
 export default class LoginPage extends React.Component {
 
