@@ -16,8 +16,8 @@ import config from './webpack.config'
 import apiRoutes from './app/apiRoutes'
 
 const isDeveloping = process.env.NODE_ENV !== 'production'
-const port = isDeveloping ? 1337 : process.env.PORT
-const address = isDeveloping ? 'localhost' : process.env.IP
+const port = process.env.PORT || 1337
+const address = process.env.IP || 'localhost'
 
 const app = express()
 app.use(session({ secret: 'shhsecret' }))
