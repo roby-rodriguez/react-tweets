@@ -5,9 +5,9 @@ import express from 'express'
 import webpack from 'webpack'
 import webpackMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { match, RouterContext } from 'react-router'
 import routes from './src/routers/routes'
 import config from './webpack.config'
 import apiRoutes from './app/apiRoutes'
@@ -17,9 +17,17 @@ const port = isDeveloping ? 1337 : process.env.PORT
 const address = isDeveloping ? 'localhost' : process.env.IP
 
 const app = express()
+app.use(session({ secret: 'shhsecret' }))
+app.use(passport.initialize())
+app.use(passport.session())
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'src'))
 apiRoutes(app)
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'src'));
+
+mongoose.connect('mongodb://localhost/tweets', err => {
+    if (err) console.error('Could not start database: ' + err.toString())
+    else console.log("Database started at " + new Date())
+})
 
 if (isDeveloping) {
   const compiler = webpack(config)

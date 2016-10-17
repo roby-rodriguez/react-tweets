@@ -1,8 +1,9 @@
 import mongoose from 'mongoose'
 
 module.exports = mongoose.model('User', {
-    id: String,
+    _id: String,
     token: String,
     displayName: String,
-    username: String
+    username: String,
+    avatar: String
 })

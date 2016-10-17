@@ -11,17 +11,19 @@ module.exports = function (passport) {
         callbackURL: config.auth.callbackURL
     }, (token, tokenSecret, profile, done) => {
         process.nextTick(() => {
-            User.findOne({ id: profile.id }, (err, user) => {
+            // console.log(JSON.stringify(profile))
+            User.findById(profile.id, (err, user) => {
                 if (err)
                     return done(err)
                 if (user) {
                     return done(null, user)
                 } else {
                     let newUser = new User()
-                    newUser.id = profile.id
+                    newUser._id = profile.id
                     newUser.token = token
-                    newUser.username = profile.username
-                    newUser.displayName = profile.displayName
+                    newUser.username = profile.name
+                    newUser.displayName = profile.screen_name
+                    newUser.avatar = profile.profile_image_url_https
                     newUser.save(err => {
                         if (err)
                             throw err
