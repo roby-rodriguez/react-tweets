@@ -3,7 +3,6 @@ import Router, { Link } from 'react-router'
 import {Panel, Input, Button} from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import $ from "jquery"
-const defaultImage = "../../twitter.png"
 
 export default class LoginPage extends React.Component {
 
@@ -12,6 +11,7 @@ export default class LoginPage extends React.Component {
     this.state = {
       loginID: '',
       password: '',
+      defaultImage: require('../../twitter.png'),
       isSubmitted: false
     }
   }
@@ -21,7 +21,7 @@ export default class LoginPage extends React.Component {
         <div className="login-page ng-scope ui-view"> 
           <div className="row"> 
             <div className="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
-              <img src={defaultImage} className="user-avatar" />
+              <img src={this.state.defaultImage} className="user-avatar" />
               <h1>React Tweets <small>A Twitter API utility</small></h1>
               <a href="/login/twitter" className="btn btn-white btn-outline btn-lg btn-rounded">
                 <i className="fa fa-twitter"></i> Login with Twitter
