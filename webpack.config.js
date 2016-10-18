@@ -14,6 +14,7 @@ module.exports = {
   devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client?reload=true',
+    path.resolve(__dirname, 'src/twitter.png'),
     path.resolve(__dirname, 'src/app')
   ],
   output: {
@@ -43,7 +44,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          "presets": ["react", "es2015", "stage-0", "react-hmre"]
+          "presets": [ "react", "es2015", "stage-0", "react-hmre" ]
         }
       }, {
         test: /\.json?$/,
@@ -54,7 +55,7 @@ module.exports = {
         loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
       },*/
       //{ test: /\.less$/, loader: 'style!css!less', include: path.resolve(__dirname, 'src/styles') },
-      {test: /\.css/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
+      { test: /\.css/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
       { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader'), include: path.resolve(__dirname, 'src/styles') },
       { test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },

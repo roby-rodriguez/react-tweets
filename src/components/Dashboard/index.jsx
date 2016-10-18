@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar } from "react-bootstrap"
 import $ from "jquery"
 import classNames from "classnames"
+import userImage from "../../twitter.png"
 
 class HomePage extends Component {
 
@@ -15,8 +16,7 @@ class HomePage extends Component {
       chartsElementsCollapsed: true,
       multiLevelDropdownCollapsed: true,
       thirdLevelDropdownCollapsed: true,
-      samplePagesCollapsed: true,
-      userImage: require('../../twitter.png')
+      samplePagesCollapsed: true
     }
   }
     
@@ -42,7 +42,7 @@ class HomePage extends Component {
               <div className="col-sm-3 col-md-2 sidebar"> 
                 <div className="text-center"> 
                   <h2 className="brand">React Tweets <br /><small>A Twitter API utility</small></h2>
-                  <img src={this.state.userImage} className="user-avatar" />
+                  <img src={userImage} className="user-avatar" />
                   <br /> 
                   <Link to="/login" className="btn btn-white btn-outline btn-rounded btn-sm">Logout</Link> 
                 </div> 
