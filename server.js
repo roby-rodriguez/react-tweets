@@ -3,6 +3,7 @@
 import path from 'path'
 import express from 'express'
 import session from 'express-session'
+import morgan from 'morgan'
 import passport from 'passport'
 import mongoose from 'mongoose'
 import webpack from 'webpack'
@@ -23,6 +24,7 @@ const app = express()
 app.use(session({ secret: 'shhsecret' }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(morgan('dev'))
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'src'))
 apiRoutes(app)
@@ -55,7 +57,7 @@ if (isDeveloping) {
     // res.end()
       match({routes, location: req.url}, (err, redirectLocation, renderProps) => {
 
-            //console.log("URL: " + req.url)
+            console.log("URL: " + req.url)
             //console.log("File: " + middleware.fileSystem.readFileSync(path.join(__dirname, '/dist/react-tweets.js')))
             // console.log("File: " + middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/main.js')))
             // in case of error display the error message

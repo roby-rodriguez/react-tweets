@@ -33,8 +33,6 @@ class HomePage extends Component {
 
   render() {
 
-    const { pathname } = this.props.location
-    
     return (
         <div className="dashboard-page ui-view"> 
           <div className="container-fluid"> 
@@ -65,7 +63,7 @@ class HomePage extends Component {
                                  transitionEnterTimeout={500}
                                  transitionLeaveTimeout={300}
                 >
-                  { cloneElement(<div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ng-scope ui-view">{this.props.children}</div> || <div />, { key: pathname }) }
+                  <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ng-scope ui-view">{this.props.children}</div>
                 </ReactCSSTransitionGroup>
                 
             </div> 
