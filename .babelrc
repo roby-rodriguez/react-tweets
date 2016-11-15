@@ -3,7 +3,7 @@
     "plugins": [
         ["transform-assets", {
             "extensions": ["png"],
-            "name": "[hash].[ext]",
+            "name": "/[hash].[ext]",
         }]
     ]
 }
