@@ -4,8 +4,8 @@ import { Route, IndexRoute } from "react-router"
 import BaseLayout from "../components/Base"
 import DashboardLayout from "../components/Dashboard"
 
-import DashboardOverviewPage from "../containers/pages/dashboard/Overview/Overview"
-import DashboardReportsPage from "../containers/pages/dashboard/Reports/Reports"
+import DashboardOverviewPage from "../containers/pages/dashboard/Overview"
+import DashboardReportsPage from "../containers/pages/dashboard/Reports"
 import LoginPage from "../containers/pages/Login"
 import NotFoundPage from '../components/NotFoundPage';
 
