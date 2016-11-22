@@ -53,14 +53,8 @@ if (isDeveloping) {
   app.use(webpackHotMiddleware(compiler))
   app.use(express.static(path.resolve(__dirname, 'dist')))
   app.get('*', (req, res) => {
-    // res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')))
-    // res.end()
       match({routes, location: req.url}, (err, redirectLocation, renderProps) => {
 
-            console.log("URL: " + req.url)
-            //console.log("File: " + middleware.fileSystem.readFileSync(path.join(__dirname, '/dist/react-tweets.js')))
-            // console.log("File: " + middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/main.js')))
-            // in case of error display the error message
             if (err)
               return res.status(500).send(err.message)
 
@@ -82,12 +76,8 @@ if (isDeveloping) {
             // render the index template with the embedded React markup
             return res.render('index', { markup })
           }
-      )})
-  } else {
-    app.use(express.static(__dirname + '/dist'))
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'dist/index.html'))
-    })
+      )
+  })
 }
 
 app.listen(port, address, err => {

@@ -24,10 +24,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.tpl.html',
-      inject: 'body',
+      template: 'src/index.ejs',
+      //inject: 'body',
       filename: 'index.html',
-      favicon: 'src/favicon.png'
+      favicon: 'src/favicon.ico'
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
