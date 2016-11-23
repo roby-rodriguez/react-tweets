@@ -1,7 +1,18 @@
 {
   "name": "react-tweets",
   "version": "0.1.0",
+  "description": "App designed for using Twitter API from ReactJS",
   "main": "server.js",
+  "readme": "README.md",
+  "author": "RobyRodriguez",
+  "bugs" : {
+    "url" : "https://github.com/roby-rodriguez/react-tweets/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roby-rodriguez/react-tweets.git"
+  },
+  "license": "MIT",
   "scripts": {
     "test": "",
     "start": "babel-node server",
