@@ -47,7 +47,7 @@ class HomePage extends Component {
 
                 <ul className="nav nav-sidebar"> 
                   <li>
-                    <Link to="/dashboard/overview">Overview</Link>
+                    <Link to="/dashboard/query">Query</Link>
                   </li> 
                   <li>
                     <Link to="/dashboard/reports">Reports</Link>

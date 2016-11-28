@@ -12,16 +12,19 @@ var fontAwesomePath = __dirname + '/node_modules/font-awesome/css';
 
 module.exports = {
   devtool: 'eval',
+
   entry: [
     'webpack-hot-middleware/client?reload=true',
     path.resolve(__dirname, 'src/twitter.png'),
     path.resolve(__dirname, 'src/app')
   ],
+
   output: {
     path: path.resolve(__dirname, '/dist/'),
     filename: 'bundle.js',
     publicPath: '/'
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.ejs',
@@ -37,6 +40,7 @@ module.exports = {
     }),
     new ExtractTextPlugin('bundle.css')
   ],
+
   module: {
     loaders: [
       {
@@ -49,7 +53,7 @@ module.exports = {
         }
       }, {
         test: /\.json?$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
 /*      {
         test: /\.css$/,
@@ -70,6 +74,11 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.css'],
     modulesDirectories: ['node_modules', bootstrapPath, bootstrapSocialPath, fontAwesomePath]
+  },
+
+  node: {
+    dns: 'empty',
+    net: 'empty'
   },
 
   // Additional plugins for CSS post processing using postcss-loader

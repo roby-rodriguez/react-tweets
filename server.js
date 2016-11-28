@@ -21,7 +21,11 @@ const port = process.env.PORT || 1337
 const address = process.env.IP || 'localhost'
 
 const app = express()
-app.use(session({ secret: 'shhsecret' }))
+app.use(session({
+    secret: 'shhsecret',
+    resave: true,
+    saveUninitialized: true
+}))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(morgan('dev'))

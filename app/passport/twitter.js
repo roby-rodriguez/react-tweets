@@ -12,23 +12,27 @@ module.exports = function (passport) {
     }, (token, tokenSecret, profile, done) => {
         process.nextTick(() => {
             // console.log(JSON.stringify(profile))
-            User.findById(profile.id, (err, user) => {
+            User.findOneAndUpdate({
+                // search query
+                _id: profile.id
+            }, {
+                // updates
+                _id: profile.id,
+                token: token,
+                tokenSecret: tokenSecret,
+                username: profile._json.name,
+                displayName: profile._json.screen_name,
+                avatar: profile._json.profile_image_url_https
+            }, {
+                // options
+                new: true, // return modified document
+                upsert: true // create if not exists
+            }, (err, updatedUser) => {
                 if (err)
                     return done(err)
-                if (user) {
-                    return done(null, user)
-                } else {
-                    let newUser = new User()
-                    newUser._id = profile.id
-                    newUser.token = token
-                    newUser.username = profile.name
-                    newUser.displayName = profile.screen_name
-                    newUser.avatar = profile.profile_image_url_https
-                    newUser.save(err => {
-                        if (err)
-                            throw err
-                        return done(null, newUser)
-                    })
+                else {
+                    let { tokenSecret, ...sanitizedUser } = updatedUser
+                    return done(null, sanitizedUser)
                 }
             })
         })
