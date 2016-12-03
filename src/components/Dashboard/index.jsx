@@ -1,34 +1,27 @@
-import React, { PropTypes, Component, cloneElement } from 'react'
-import Router, { Link, RouteHandler } from "react-router"
+import React, { Component } from 'react'
+import { Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar } from "react-bootstrap"
-import $ from "jquery"
-import classNames from "classnames"
-import userImage from "../../twitter.png"
+import fetch from 'isomorphic-fetch'
+import Avatar from "./Avatar"
 
 class HomePage extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      uiElementsCollapsed: true,
-      chartsElementsCollapsed: true,
-      multiLevelDropdownCollapsed: true,
-      thirdLevelDropdownCollapsed: true,
-      samplePagesCollapsed: true
     }
   }
     
   componentWillMount() {
-    // this.setState({Height: $(window).height()})
-  }
-
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-    // $(window).unbind('resize',this.adjustResize)
+    fetch('/auth/user', {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+      .then(response => response.json())
+      .then(json => this.setState({
+          user: json
+        })
+      )
   }
 
   render() {
@@ -38,12 +31,7 @@ class HomePage extends Component {
           <div className="container-fluid"> 
             <div className="row"> 
               <div className="col-sm-3 col-md-2 sidebar"> 
-                <div className="text-center"> 
-                  <h2 className="brand">React Tweets <br /><small>A Twitter API utility</small></h2>
-                  <img src={userImage} className="user-avatar" />
-                  <br /> 
-                  <Link to="/login" className="btn btn-white btn-outline btn-rounded btn-sm">Logout</Link> 
-                </div> 
+                <Avatar user={this.state.user} />
 
                 <ul className="nav nav-sidebar"> 
                   <li>

@@ -1,16 +1,17 @@
 import twitter from './twitter'
-import User from '../model/user'
 
 module.exports = function (passport) {
 
     passport.serializeUser((user, done) => {
-        done(null, user.id)
+        console.log("serialize user: ")
+        console.log(user)
+        return done(null, user)
     })
 
-    passport.deserializeUser((id, done) => {
-        User.findById(id, (err, user) => {
-            done(err, user)
-        })
+    passport.deserializeUser((user, done) => {
+        console.log("deserialize user: ")
+        console.log(user)
+        return done(null, user)
     })
 
     twitter(passport)

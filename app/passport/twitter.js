@@ -11,7 +11,6 @@ module.exports = function (passport) {
         callbackURL: config.auth.callbackURL
     }, (token, tokenSecret, profile, done) => {
         process.nextTick(() => {
-            // console.log(JSON.stringify(profile))
             User.findOneAndUpdate({
                 // search query
                 _id: profile.id
@@ -20,9 +19,9 @@ module.exports = function (passport) {
                 _id: profile.id,
                 token: token,
                 tokenSecret: tokenSecret,
-                username: profile._json.name,
-                displayName: profile._json.screen_name,
-                avatar: profile._json.profile_image_url_https
+                username: profile.username,
+                displayName: profile.displayName,
+                avatar: profile._json.profile_image_url_https.replace("_normal","")
             }, {
                 // options
                 new: true, // return modified document
@@ -31,8 +30,11 @@ module.exports = function (passport) {
                 if (err)
                     return done(err)
                 else {
-                    let { tokenSecret, ...sanitizedUser } = updatedUser
-                    return done(null, sanitizedUser)
+                    // would've been nice if es6 worked by default, with imports n shit
+                    // let { tokenSecret, ...sanitizedUser } = updatedUser
+                    updatedUser["tokenSecret"] = undefined
+                    console.log(updatedUser)
+                    return done(null, updatedUser)
                 }
             })
         })

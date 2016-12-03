@@ -3,8 +3,9 @@ import init from './passport/init'
 import SearchController from './controller/searchController'
 
 function isAuthenticated (req, res, next) {
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) {
         return next();
+    }
     res.redirect('/')
 }
 
@@ -17,11 +18,20 @@ module.exports = function (app) {
     app.get('/login/twitter/callback', passport.authenticate('twitter', {
         successRedirect: '/home',
         failureRedirect: '/'
-    }), (req, res) => {
-        res.json(req.user)
-    })
+    }))
+
+    app.get('/auth/*', isAuthenticated)
 
     app.get('/auth/api/search/:query', SearchController.search)
 
-    app.get('/auth/*', isAuthenticated)
+    app.get('/auth/user', (req, res) => {
+        if (req.session.passport !== undefined)
+            res
+                .status(200)
+                .json(req.session.passport.user)
+        else
+            res
+                .status(401)
+        res.end()
+    })
 }
