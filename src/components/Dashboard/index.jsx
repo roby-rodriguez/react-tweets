@@ -1,27 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import fetch from 'isomorphic-fetch'
 import Avatar from "./Avatar"
 
 class HomePage extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-    }
   }
-    
+
   componentWillMount() {
-    fetch('/auth/user', {
-      method: 'GET',
-      credentials: 'same-origin'
-    })
-      .then(response => response.json())
-      .then(json => this.setState({
-          user: json
-        })
-      )
+    const { dispatch } = this.props
+    dispatch(this.props.fetchUser)
   }
 
   render() {
@@ -31,7 +22,7 @@ class HomePage extends Component {
           <div className="container-fluid"> 
             <div className="row"> 
               <div className="col-sm-3 col-md-2 sidebar"> 
-                <Avatar user={this.state.user} />
+                <Avatar user={this.props.user} />
 
                 <ul className="nav nav-sidebar"> 
                   <li>
@@ -61,4 +52,8 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage
+export default connect(
+  state => ({
+    user: state.user
+  })
+)(HomePage)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class Avatar extends Component {
-  render(user) {
+  render() {
     return (
       <div className="cl-effect-3">
         <p>

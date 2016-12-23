@@ -1,14 +1,25 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
-import "./styles/app.less"
+import { syncHistoryWithStore } from 'react-router-redux'
+import { Provider } from 'react-redux'
 import NProgress from 'nprogress'
-import Base from './components/Base'
-import routes from './routers/routes'
+import routes from "./routers"
+import configureStore from "./store"
+import "./styles/app.less"
 
 NProgress.configure({ showSpinner: false })
 
+const preloadedState = window.__PRELOADED_STATE__
+const store = configureStore(preloadedState)
+const history = syncHistoryWithStore(browserHistory, store)
+
+// TODO check if anything else needed
+// https://github.com/reactjs/redux/blob/master/examples/real-world/src/index.js
+
 render(
-  <Router routes={routes} history={browserHistory} />,
+  <Provider store={store}>
+    <Router routes={routes} history={history} />
+  </Provider>,
   document.getElementById('app')
 )

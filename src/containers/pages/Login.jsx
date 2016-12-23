@@ -1,20 +1,7 @@
-import React from 'react'
-import Router, { Link } from 'react-router'
-import {Panel, Input, Button} from 'react-bootstrap'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import $ from "jquery"
+import React, { Component } from 'react'
 import defaultImage from "../../twitter.png"
 
-export default class LoginPage extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      loginID: '',
-      password: '',
-      isSubmitted: false
-    }
-  }
+export default class LoginPage extends Component {
 
   render() {
     return(
@@ -30,27 +17,5 @@ export default class LoginPage extends React.Component {
           </div> 
         </div>
     )
-  }
-
-  setLoginID(e) {
-    this.setState({
-      loginID: e.target.value,
-      loginError: ''
-    })
-  }
-
-  setPassword(e) {
-    this.setState({
-      password: e.target.value,
-      loginError: ''
-    })
-  }
-
-  handleLogin(e) {
-    e.preventDefault()
-    // for history check this out: https://github.com/ReactTraining/react-router/blob/fe9358adc864c556afff6fd472476ab84ce2d7d9/docs/api/History.md#but-im-using-classes
-    // this.context.history.pushState(null, '/dashboard/overview')
-    // this.transitionTo('dashboard')
-    return false
   }
 }

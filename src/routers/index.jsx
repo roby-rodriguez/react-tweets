@@ -1,13 +1,13 @@
-import React from "react"
-import { Route, IndexRoute } from "react-router"
+import React from 'react'
+import { Route, IndexRoute } from 'react-router'
 
 import BaseLayout from "../components/Base"
-import DashboardLayout from "../components/Dashboard"
+import DashboardLayout from "../containers/pages/Dashboard"
 
-import DashboardQueryPage from "../containers/pages/dashboard/Query"
-import DashboardReportsPage from "../containers/pages/dashboard/Reports"
+import DashboardQueryPage from "../containers/pages/Dashboard/Query"
+import DashboardReportsPage from "../containers/pages/Dashboard/Reports"
 import LoginPage from "../containers/pages/Login"
-import NotFoundPage from '../components/NotFoundPage';
+import NotFoundPage from '../components/NotFoundPage'
 
 const routes = (
     <Route path="/" component={BaseLayout}>

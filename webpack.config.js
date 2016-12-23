@@ -3,7 +3,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var bootstrapPath = __dirname + '/node_modules/bootstrap/dist/css';
@@ -27,9 +26,9 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.ejs',
-      //inject: 'body',
-      filename: 'index.html',
+      template: './src/index.ejs',
+      inject: 'body',
+      filename: 'index.ejs',
       favicon: 'src/favicon.ico'
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -72,7 +71,7 @@ module.exports = {
 
   // Automatically transform files with these extensions
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css'],
+    extensions: ['', '.js', '.ejs', '.jsx', '.css'],
     modulesDirectories: ['node_modules', bootstrapPath, bootstrapSocialPath, fontAwesomePath]
   },
 

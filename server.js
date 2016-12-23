@@ -3,6 +3,7 @@
 import path from 'path'
 import express from 'express'
 import session from 'express-session'
+import ejs from 'ejs'
 import morgan from 'morgan'
 import passport from 'passport'
 import mongoose from 'mongoose'
@@ -12,9 +13,15 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
-import routes from './src/routers/routes'
-import config from './webpack.config'
-import apiRoutes from './app/apiRoutes'
+import { Provider } from 'react-redux'
+import routes from "./src/routers"
+import config from "./webpack.config"
+import apiRoutes from "./app/apiRoutes"
+import configureStore from "./src/store"
+import NotFoundPage from "./src/components/NotFoundPage"
+
+// TODO remove this
+import { LOGIN_USER } from "./src/actions"
 
 const isDeveloping = process.env.NODE_ENV !== 'production'
 const port = process.env.PORT || 1337
@@ -29,6 +36,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(morgan('dev'))
+
+app.engine('ejs', ejs.__express)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'src'))
 apiRoutes(app)
@@ -67,18 +76,30 @@ if (isDeveloping) {
               return res.redirect(302, redirectLocation.pathname + redirectLocation.search)
 
             // generate the React markup for the current route
-            let markup;
+            let markup, appState
             if (renderProps) {
+              // TODO compute preloaded state je nach route
+              let preloadedState = {
+                type: LOGIN_USER,
+                payload: {}
+              }
+              let store = configureStore()
+              appState = JSON.stringify(store.getState())
               // if the current route matched we have renderProps
-              markup = renderToString(<RouterContext {...renderProps}/>)
+              markup = renderToString(
+                <Provider store={store}>
+                  <RouterContext {...renderProps}/>
+                </Provider>
+              )
             } else {
               // otherwise we can render a 404 page
-              markup = renderToString(<NotFoundPage/>)
+              markup = renderToString(<NotFoundPage />)
               res.status(404)
             }
+            /// -> Faza e ca din prima nici nu se face request, incarca react direct, de-aia scrie <%- markup -%> pe pagina alba
 
             // render the index template with the embedded React markup
-            return res.render('index', { markup })
+            return res.render('index', { markup, appState })
           }
       )
   })

@@ -1,8 +1,7 @@
-import React from "react"
-import { Route, DefaultRoute, RouteHandler } from "react-router"
+import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-export default class Base extends React.Component {
+export default class Base extends Component {
 
   render() {
   	return (

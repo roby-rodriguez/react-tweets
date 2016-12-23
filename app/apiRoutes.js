@@ -22,7 +22,7 @@ module.exports = function (app) {
 
     app.get('/auth/*', isAuthenticated)
 
-    app.get('/auth/api/search/:query', SearchController.search)
+    app.get('/auth/api/search', SearchController.search)
 
     app.get('/auth/user', (req, res) => {
         if (req.session.passport !== undefined)
