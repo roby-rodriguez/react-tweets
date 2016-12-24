@@ -7,16 +7,11 @@ export function isServer() {
 // taken from
 // http://stackoverflow.com/questions/6549223/javascript-code-to-display-twitter-created-at-as-xxxx-ago#answer-6549563
 // from http://widgets.twimg.com/j/1/widget.js
-var K = function () {
-    var a = navigator.userAgent;
-    return {
-        ie: a.match(/MSIE\s([^;]*)/)
-    }
-}()
+const isIE = () => navigator.userAgent.match(/MSIE\s([^;]*)/)
 export function parseTwitterDate(tdate) {
     var system_date = new Date(Date.parse(tdate));
     var user_date = new Date();
-    if (K.ie) {
+    if (isClient() && isIE()) {
         system_date = Date.parse(tdate.replace(/( \+)/, ' UTC$1'))
     }
     var diff = Math.floor((user_date - system_date) / 1000);
