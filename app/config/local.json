@@ -1,0 +1,5 @@
+{
+  "auth": {
+    "callbackURL": "http://localhost:1337/login/twitter/callback"
+  }
+}
