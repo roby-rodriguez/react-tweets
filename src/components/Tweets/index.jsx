@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Tweet } from "../Tweet"
 
 export default class Tweets extends Component {
     static propTypes = {
@@ -12,9 +13,19 @@ export default class Tweets extends Component {
                 <h2>Results</h2>
                 <ListGroup>
                     {
-                        this.props.data.map(tweet => {
-                            return <ListGroupItem>{tweet.text}</ListGroupItem>
-                        })
+                        this.props.data.map(tweet => <ListGroupItem key={tweet.id}>
+                            <Tweet
+                                userName={tweet.user.screen_name}
+                                displayName={tweet.user.name}
+                                avatarUrl={tweet.user.profile_image_url}
+                                text={tweet.text}
+                                id={tweet.id_str}
+                                created={tweet.created_at}
+                                favorited={tweet.favorite_count}
+                                retweeted={tweet.retweet_count}
+                                >
+                            </Tweet>
+                        </ListGroupItem>)
                     }
                 </ListGroup>
                 <p>

@@ -1,0 +1,51 @@
+.list-group-item:hover {
+  background: #ecf0f1;
+}
+.tweet-content {
+  .tweet-header {
+    a:hover {
+      text-decoration: none;
+    }
+    .user-avatar-small {
+      border: 0;
+      border-radius: 5px;
+    }
+    .fullname {
+      margin-left: .5em;
+      margin-right: .5em;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .username {
+      font-size: 13px;
+      color: #8899a6;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .tweet-time {
+      margin-left: .5em;
+      font-size: 13px;
+      color: #8899a6;
+      &::before {
+        content: "\00b7";
+      }
+    }
+  }
+  .tweet-text {
+
+  }
+  .tweet-footer {
+    & > i {
+      color: #aab8c2;
+      display: inline-block;
+      font-size: 16px;
+      line-height: 1;
+      padding-left: 1.5em;
+      &::before {
+        padding-right: .2em;
+      }
+    }
+  }
+}
