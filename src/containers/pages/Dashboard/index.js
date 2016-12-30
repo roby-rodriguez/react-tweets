@@ -3,11 +3,11 @@ import { loginUser } from "../../../actions"
 import DashboardComponent from "../../../components/Dashboard"
 
 const mapStateToProps = state => ({
-    user: state.payload
+    user: state.login.user
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchUser: loginUser
+    fetchUser: () => { dispatch(loginUser) }
 })
 
 export default connect(

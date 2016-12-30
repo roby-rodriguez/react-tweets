@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Avatar from "./Avatar"
 
-class HomePage extends Component {
+export default class HomePage extends Component {
 
   constructor(props) {
     super(props)
   }
 
   componentWillMount() {
-    const { dispatch } = this.props
-    dispatch(this.props.fetchUser)
+    this.props.fetchUser()
   }
 
   render() {
@@ -51,9 +49,3 @@ class HomePage extends Component {
     )
   }
 }
-
-export default connect(
-  state => ({
-    user: state.user
-  })
-)(HomePage)

@@ -1,23 +1,51 @@
 import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
-import { reducer as formReducer } from 'redux-form'
-import { LOGIN_USER, QUERY_TWEETS } from "../actions"
+import { routerReducer as routing } from 'react-router-redux'
+import { reducer as form } from 'redux-form'
+import { LOGIN_USER, QUERY_TWEETS_REQUEST, QUERY_TWEETS_RESPONSE } from "../actions"
 
-const loginReducer = (state = {}, action) => {
+/**
+ * Login reducer
+ *
+ * @param state
+ * @param action
+ * @returns {*}
+ */
+const login = (state = {}, action) => {
     switch (action.type) {
         case LOGIN_USER:
-            return action.payload
+            return Object.assign({}, state, {
+                user: action.payload
+            })
         default:
             return state
     }
 }
 
-const queryReducer = (state = [], action) => {
+/**
+ * Query reducer
+ *
+ * @param state
+ * @param action
+ * @returns {*}
+ */
+const query = (state = {
+    tweets: [],
+    isFetching: false
+}, action) => {
     // TODO add pagination
     // check out search_metadata from payload
     switch (action.type) {
-        case QUERY_TWEETS:
-            return [...action.payload.statuses]
+        case QUERY_TWEETS_REQUEST:
+            return Object.assign({}, state, {
+                tweets: [],
+                isFetching: true
+            })
+        case QUERY_TWEETS_RESPONSE:
+            return Object.assign({}, state, {
+                tweets: [...action.payload.statuses],
+                isFetching: false
+            })
+            return
         default:
             return state
     }
@@ -26,10 +54,10 @@ const queryReducer = (state = [], action) => {
 // as the state gets more complex, the reducer functions are split into files
 // and imported here, the only thing that should stay here is the following export
 const rootReducer = combineReducers({
-    user: loginReducer,
-    tweets: queryReducer,
-    routing: routerReducer,
-    form: formReducer
+    login,
+    query,
+    routing,
+    form
 })
 
 export default rootReducer

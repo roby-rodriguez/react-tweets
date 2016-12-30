@@ -3,7 +3,8 @@ import { searchTweets } from "../../../../actions"
 import QueryComponent from "../../../../components/Dashboard/Query"
 
 const mapStateToProps = state => ({
-  tweets: state.tweets
+  tweets: state.query.tweets,
+  isFetching: state.query.isFetching
 })
 
 const mapDispatchToProps = dispatch => ({

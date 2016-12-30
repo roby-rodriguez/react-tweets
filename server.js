@@ -20,9 +20,6 @@ import apiRoutes from "./app/apiRoutes"
 import configureStore from "./src/store"
 import NotFoundPage from "./src/components/NotFoundPage"
 
-// TODO remove this
-import { LOGIN_USER } from "./src/actions"
-
 const isDeveloping = process.env.NODE_ENV !== 'production'
 const port = process.env.PORT || 1337
 const address = process.env.IP || 'localhost'
@@ -79,11 +76,9 @@ if (isDeveloping) {
             let markup, appState
             if (renderProps) {
               // TODO compute preloaded state je nach route
-              let preloadedState = {
-                type: LOGIN_USER,
-                payload: {}
+              const preloadedState = {
               }
-              let store = configureStore()
+              let store = configureStore(preloadedState)
               appState = JSON.stringify(store.getState())
               // if the current route matched we have renderProps
               markup = renderToString(
