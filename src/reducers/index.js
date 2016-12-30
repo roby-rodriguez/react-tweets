@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
+import { reducer as formReducer } from 'redux-form'
 import { LOGIN_USER, QUERY_TWEETS } from "../actions"
 
 const loginReducer = (state = {}, action) => {
@@ -26,7 +27,8 @@ const queryReducer = (state = [], action) => {
 const rootReducer = combineReducers({
     user: loginReducer,
     tweets: queryReducer,
-    routing: routerReducer
+    routing: routerReducer,
+    form: formReducer
 })
 
 export default rootReducer

@@ -1,3 +1,9 @@
+let lastId = 0;
+
+export function generateId(prefix='id') {
+    lastId++;
+    return `${prefix}${lastId}`;
+}
 export function isClient() {
     return !isServer()
 }

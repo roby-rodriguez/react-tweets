@@ -4,7 +4,7 @@ import { Jumbotron } from 'react-bootstrap'
 import nProgress from '../../../../decorators/nProgress'
 
 @nProgress
-export default class Reports extends Component {
+export default class Stream extends Component {
   componentWillMount() {
     console.log("will mount reports")
   }

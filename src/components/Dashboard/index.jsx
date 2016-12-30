@@ -29,7 +29,7 @@ class HomePage extends Component {
                     <Link to="/dashboard/query">Query</Link>
                   </li> 
                   <li>
-                    <Link to="/dashboard/reports">Reports</Link>
+                    <Link to="/dashboard/stream">Stream</Link>
                   </li>
                   <li>
                     <a href="http://www.strapui.com/ani-reactjs-theme">Bootstrap theme for this site</a>
