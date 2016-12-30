@@ -99,7 +99,8 @@ SearchInput = connect(
     state => {
         const resultType = selector(state, 'resultType') || ResultType.mixed.name
         return {
-            resultType
+            resultType,
+            initialValues: { resultType }
         }
     }
 )(SearchInput)

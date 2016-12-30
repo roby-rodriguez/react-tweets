@@ -10,7 +10,7 @@ function login(user) {
     }
 }
 
-export function query(tweets) {
+function query(tweets) {
     return {
         type: QUERY_TWEETS,
         payload: tweets
@@ -33,6 +33,6 @@ export const searchTweets = search => (dispatch, state) => {
       method: 'GET',
       credentials: 'same-origin'
     })
-      // .then(response => response.json())
-      // .then(json => dispatch(query(json)))
+      .then(response => response.json())
+      .then(json => dispatch(query(json)))
 }

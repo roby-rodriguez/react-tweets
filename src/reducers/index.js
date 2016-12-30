@@ -14,9 +14,10 @@ const loginReducer = (state = {}, action) => {
 
 const queryReducer = (state = [], action) => {
     // TODO add pagination
+    // check out search_metadata from payload
     switch (action.type) {
         case QUERY_TWEETS:
-            return [...action.payload]
+            return [...action.payload.statuses]
         default:
             return state
     }
