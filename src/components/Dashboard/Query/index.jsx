@@ -39,7 +39,9 @@ export default class Query extends Component {
             </a>
             <h2>Criteria</h2>
             <Collapse in={!this.state.open}>
+              <div>
                 <SearchInput onSubmit={this.handleSearch} />
+              </div>
             </Collapse>
 
             <Tweets data={this.props.tweets} />
