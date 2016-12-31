@@ -27,11 +27,12 @@ export default class Query extends Component {
   render() {
     return (
         <div className="query-page" key="query">
-          <Link to="/dashboard/stream" className="pull-right btn btn-primary btn-outline btn-rounded">Stream</Link>
+          <Link to="/dashboard/stream" className="pull-right btn btn-primary btn-outline btn-rounded">Go to Stream</Link>
           <h2>Query <small>Find tweets</small></h2>
           <Jumbotron>
             <h1>Search</h1> Select from among the controls to create an interactive search for tweets:
 
+            <i className="glyphicon glyphicon-search bg-fade"></i>
             <a
                 className={"pull-right btn btn-default btn-lg btn-outline btn-rounded glyphicon rtw-toggle " + (this.state.open ? "glyphicon-chevron-right" : "glyphicon-chevron-up")}
                 onClick={() => this.setState({ open: !this.state.open })}
