@@ -3,12 +3,9 @@ import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
-import NProgress from 'nprogress'
 import routes from "./routers"
 import configureStore from "./store"
 import "./styles/app.less"
-
-NProgress.configure({ showSpinner: false })
 
 const preloadedState = window.__PRELOADED_STATE__
 const store = configureStore(preloadedState)

@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { Jumbotron, Collapse } from 'react-bootstrap'
-import { Enum } from 'enumify'
 import nProgress from "../../../decorators/nProgress"
 import SearchInput from "../SearchInput"
 import Tweets from "../../Tweets"
@@ -11,6 +10,7 @@ export default class Query extends Component {
 
   static propTypes = {
     fetchTweets: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired,
     tweets: PropTypes.array
   }
 
