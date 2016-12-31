@@ -67,22 +67,25 @@ let SearchInput = props => {
                         </Col>
                     </Row>
 
+                    <Row className="rtw-row">
+                        <Col sm={12}>
+                            <button
+                                type="submit"
+                                className="btn btn-primary btn-lg btn-outline btn-rounded"
+                                disabled={pristine || submitting}
+                                > Search
+                            </button>
+
+                            <button
+                                type="button"
+                                className="btn btn-info btn-lg btn-outline btn-rounded"
+                                disabled={pristine || submitting}
+                                onClick={reset}
+                                > Clear
+                            </button>
+                        </Col>
+                    </Row>
                 </Grid>
-                <p>
-                    <button
-                        type="submit"
-                        className="btn btn-primary btn-lg btn-outline btn-rounded"
-                        disabled={pristine || submitting}
-                        > Search
-                    </button>
-                    <button
-                        type="button"
-                        className="btn btn-info btn-lg btn-outline btn-rounded"
-                        disabled={pristine || submitting}
-                        onClick={reset}
-                        > Clear
-                    </button>
-                </p>
             </FormGroup>
         </form>
     )
