@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import { Jumbotron, Collapse } from 'react-bootstrap'
+import { Jumbotron } from 'react-bootstrap'
 import nProgress from "../../../decorators/nProgress"
+import CollapsibleSection from "../CollapsibleSection"
 import SearchInput from "../SearchInput"
 import Tweets from "../../Tweets"
 
@@ -22,6 +23,8 @@ export default class Query extends Component {
 
   handleSearch = values => {
     this.props.fetchTweets(values)
+    // hide input section
+    this.setState({ hideInput: true })
   }
 
   render() {
@@ -33,19 +36,14 @@ export default class Query extends Component {
             <h1>Search</h1> Select from among the controls to create an interactive search for tweets:
 
             <i className="glyphicon glyphicon-search bg-fade"></i>
-            <a
-                className={"pull-right btn btn-default btn-lg btn-outline btn-rounded glyphicon rtw-toggle " + (this.state.open ? "glyphicon-chevron-right" : "glyphicon-chevron-up")}
-                onClick={() => this.setState({ open: !this.state.open })}
-                >
-            </a>
-            <h2>Criteria</h2>
-            <Collapse in={!this.state.open}>
-              <div>
-                <SearchInput onSubmit={this.handleSearch} />
-              </div>
-            </Collapse>
 
-            <Tweets data={this.props.tweets} />
+            <CollapsibleSection title="Criteria" forcedClose={this.state.hideInput}>
+              <SearchInput onSubmit={this.handleSearch} />
+            </CollapsibleSection>
+
+            <CollapsibleSection title="Results" hidden={this.props.tweets.length === 0}>
+              <Tweets data={this.props.tweets} />
+            </CollapsibleSection>
           </Jumbotron>
         </div>
     )
