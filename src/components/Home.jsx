@@ -1,18 +1,23 @@
 import React, { Component } from 'react'
-import { Link } from "react-router"
 import { Jumbotron } from 'react-bootstrap'
-import nProgress from '../decorators/nProgress'
+import nProgress from "../decorators/nProgress"
+import { HeadNavigation } from "./Dashboard/HeadNavigation"
 
 @nProgress
 export default class Home extends Component {
 
     render() {
         return (
-            <div key="reports" className="reports-page">
+            <div key="home">
                 <div className="ng-scope">
-                    <Link to="/dashboard/query" className="pull-right btn btn-primary btn-outline btn-rounded">Query</Link>
-                    <Link to="/dashboard/stream" className="pull-right btn btn-primary btn-outline btn-rounded">Stream</Link>
-                    <h2>Home <small>About react-tweets</small></h2>
+                    <HeadNavigation
+                        title="Home"
+                        description="About react-tweets"
+                        links={[
+                            { title: "Query", location: "query" },
+                            { title: "Stream", location: "stream" }
+                        ]}
+                        />
 
                     <i className="glyphicon glyphicon-home bg-fade"></i>
                     <Jumbotron>

@@ -1,3 +1,5 @@
+@avatar-shadow-color: rgba(255, 255, 255, 0.7);
+
 .ui-base {
 	position: absolute;
 	top: 0;
@@ -9,4 +11,22 @@
 .user-avatar {
 	width: 125px;
 	height: 125px;
+}
+
+.user-avatar-smaller {
+  height: 37px;
+  float: right;
+  border-radius: 5px;
+  margin-top: -2px;
+  border: 1px solid;
+  &:hover {
+	box-shadow: 0 0 0 2px @avatar-shadow-color inset;
+	color: @avatar-shadow-color;
+  }
+}
+
+@media (min-width: 768px) {
+  .user-avatar-smaller, .rtw-header-logout {
+	display: none;
+  }
 }
