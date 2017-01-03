@@ -1,4 +1,14 @@
 .btn-outline {
+	
+	.btn-mixin(@color; @c-hover: darken(@color, 10%)) {
+		box-shadow: 0 0 0 2px @c-hover inset;
+		color: @c-hover;
+
+		&:hover {
+			box-shadow: 0 0 0 2px @color inset;
+			color: @color;
+		}
+	}
 
 	background: none;
 	//border-width:  2px;
@@ -11,76 +21,28 @@
 	}
 
 	&.btn-white {
-		box-shadow: 0 0 0 2px rgba(255,255,255, 0.8) inset;
-		color: rgba(255,255,255, 0.8);
-
-		&:hover {
-			box-shadow: 0 0 0 2px rgba(255,255,255, 1) inset;
-			color: rgba(255,255,255, 1);
-		}
-
+		.btn-mixin(#fff, fadeout(#fff, 30%));
 	}
 
 	&.btn-primary {
-
-		box-shadow: 0 0 0 2px darken(@brand-primary, 10%) inset;
-		color: darken(@brand-primary, 10%);
-
-		&:hover {
-			box-shadow: 0 0 0 2px @brand-primary inset;
-			color: @brand-primary;
-		}
-
+		.btn-mixin(@brand-primary);
 	}
 
 	&.btn-success {
-
-		box-shadow: 0 0 0 2px darken(@brand-success, 10%) inset;
-		color: darken(@brand-success, 10%);
-
-		&:hover {
-			box-shadow: 0 0 0 2px @brand-success inset;
-			color: @brand-success;
-		}
-
+		.btn-mixin(@brand-success);
 	}
 
 	&.btn-info {
-
-		box-shadow: 0 0 0 2px darken(@brand-info, 10%) inset;
-		color: darken(@brand-info, 10%);
-
-		&:hover {
-			box-shadow: 0 0 0 2px @brand-info inset;
-			color: @brand-info;
-		}
-
+		.btn-mixin(@brand-info);
 	}
 
 	&.btn-warning {
-
-		box-shadow: 0 0 0 2px darken(@brand-warning, 10%) inset;
-		color: darken(@brand-warning, 10%);
-
-		&:hover {
-			box-shadow: 0 0 0 2px @brand-warning inset;
-			color: @brand-warning;
-		}
-
+		.btn-mixin(@brand-warning);
 	}
 
 	&.btn-danger {
-
-		box-shadow: 0 0 0 2px darken(@brand-danger, 10%) inset;
-		color: darken(@brand-danger, 10%);
-
-		&:hover {
-			box-shadow: 0 0 0 2px @brand-danger inset;
-			color: @brand-danger;
-		}
-
+		.btn-mixin(@brand-danger);
 	}
-
 }
 
 .btn-rounded {
