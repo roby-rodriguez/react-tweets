@@ -36,6 +36,14 @@ export const loginUser = dispatch => {
       .then(json => dispatch(login(json)))
 }
 
+export const logoutUser = dispatch => {
+    return fetch('/logout', {
+        method: 'GET',
+        credentials: 'same-origin'
+    })
+    .then(() => dispatch(login()))
+}
+
 export const searchTweets = search => (dispatch, state) => {
     dispatch(queryRequest())
     return fetch(`/auth/api/search?resultType=${search.resultType}&query=${search.query}` + 

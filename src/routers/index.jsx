@@ -18,7 +18,6 @@ const routes = (
         <Route path="/dashboard/query" component={DashboardQueryPage} />
         <Route path="/dashboard/stream" component={DashboardStreamPage} />
       </Route>
-      <Route path="/login" component={LoginPage} />
       <Route path="*" component={NotFoundPage}/>
     </Route>
 )

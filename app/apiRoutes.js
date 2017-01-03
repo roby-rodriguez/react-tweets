@@ -20,6 +20,19 @@ module.exports = function (app) {
         failureRedirect: '/'
     }))
 
+    app.get('/logout', (req, res) => {
+        console.log("Logged out")
+        req.session.destroy()
+        req.logout()
+        res.status(200)
+        res.end()
+    })
+
+    // secure pages
+    app.get('/dashboard', isAuthenticated)
+    app.get('/dashboard/*', isAuthenticated)
+
+    // secure services
     app.get('/auth/*', isAuthenticated)
 
     app.get('/auth/api/search', SearchController.search)

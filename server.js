@@ -26,9 +26,9 @@ const address = process.env.IP || 'localhost'
 
 const app = express()
 app.use(session({
-    secret: 'shhsecret',
-    resave: true,
-    saveUninitialized: true
+  secret: 'shhsecret',
+  resave: false,
+  saveUninitialized: false
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -40,8 +40,8 @@ app.set('views', path.join(__dirname, 'src'))
 apiRoutes(app)
 
 mongoose.connect('mongodb://localhost/tweets', err => {
-    if (err) console.error('Could not start database: ' + err.toString())
-    else console.log("Database started at " + new Date())
+  if (err) console.error('Could not start database: ' + err.toString())
+  else console.log("Database started at " + new Date())
 })
 
 if (isDeveloping) {

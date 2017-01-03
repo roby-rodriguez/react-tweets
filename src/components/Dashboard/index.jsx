@@ -20,14 +20,14 @@ export default class HomePage extends Component {
           <div className="container-fluid"> 
             <div className="row"> 
               <div className="col-sm-3 col-md-2 sidebar"> 
-                <Avatar user={this.props.user} />
+                <Avatar user={this.props.user} logout={this.props.logout} />
 
                 <ul className="nav nav-sidebar"> 
                   <li>
-                    <Link to="/dashboard/query">Query</Link>
+                    <Link to="/dashboard/query" activeClassName="selected">Query</Link>
                   </li> 
                   <li>
-                    <Link to="/dashboard/stream">Stream</Link>
+                    <Link to="/dashboard/stream" activeClassName="selected">Stream</Link>
                   </li>
                   <li>
                     <a href="http://www.strapui.com/ani-reactjs-theme">Bootstrap theme for this site</a>
