@@ -1,14 +1,12 @@
 import { connect } from 'react-redux'
-// TODO stream
-import QueryComponent from "../../../../components/Dashboard/Stream"
+import { streamTweets } from "../../../../actions"
+import StreamComponent from "../../../../components/Dashboard/Stream"
 
 const mapStateToProps = state => ({
-})
-
-const mapDispatchToProps = dispatch => ({
+    tweets: state.stream.tweets,
+    isFetching: state.stream.isFetching
 })
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
-)(QueryComponent)
+)(StreamComponent)

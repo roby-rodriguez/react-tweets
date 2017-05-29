@@ -49,6 +49,9 @@ export default class Query extends Component {
 
             <CollapsibleSection title="Results" hidden={this.props.tweets.length === 0}>
               <Tweets data={this.props.tweets} />
+              <p>
+                <a className="btn btn-info btn-lg btn-outline btn-rounded" href="https://dev.twitter.com/rest/reference/get/search/tweets">Learn more</a>
+              </p>
             </CollapsibleSection>
           </Jumbotron>
         </div>

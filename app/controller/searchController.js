@@ -1,41 +1,16 @@
-import twitterAPI from "node-twitter-api"
+import twitterAPI from "twit"
 import User from '../model/user'
-import config from '../config'
-
-const TwitterAPI = new twitterAPI({
-    consumerKey: config.auth.consumerKey,
-    consumerSecret: config.auth.consumerSecret,
-    callback: config.auth.callbackURL
-})
-
-const isEmpty = element => element == null || element == '' || element == 'null' || element == 'undefined'
-
-// wrap twitter API call to promise
-const searchTweets = (search, token, tokenSecret) => {
-    return new Promise((resolve, reject) => {
-
-        TwitterAPI.search(search, token, tokenSecret, (err, data) => {
-            if (err)
-                reject(err)
-            else
-                resolve(data)
-        })
-    })
-}
+import appConfig from '../config'
+import Util from '../util'
 
 module.exports = {
     search (req, res) {
         User.findById(req.session.passport.user._id)
             .then(user => {
-                // Twitter.prototype.search = function(params, accessToken, accessTokenSecret, callback)
-                const search = {
-                    q: req.query.query,
-                    result_type: req.query.resultType
-                }
-                if (!isEmpty(req.query.language)) search.lang = req.query.language
-                if (!isEmpty(req.query.until)) search.until = req.query.until
-
-                return searchTweets(search, user.token, user.tokenSecret)
+                const { access_token, access_token_secret } = user
+                const TwitterAPI = new twitterAPI({ ...appConfig, access_token, access_token_secret })
+                const search = Util.getQuery(req.query)
+                return TwitterAPI.get('search/tweets', search)
             })
             .then(tweets => {
                 return res
@@ -43,8 +18,9 @@ module.exports = {
                     .json(tweets)
                     .end()
             }, err => {
+                console.warn(err)
                 return res
-                    .status(503)
+                    .status(500)
                     .json({
                         error: err
                     })

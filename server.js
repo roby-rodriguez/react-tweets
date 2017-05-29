@@ -100,7 +100,15 @@ if (isDeveloping) {
   })
 }
 
-app.listen(port, address, err => {
+const server = app.listen(port, address, err => {
   if (err) console.error(err)
   console.info('Magic happens on %s:%s...', address, port)
 })
+
+// hook socket.io into express
+var io = require('socket.io').listen(server)
+// setup socket.io to use express session middleware
+io.use((socket, next) => session(socket.request, {}, next))
+// setup socket.io
+var socketHandler = require('./app/socket/handler')(io)
+io.sockets.on('connection', socketHandler)

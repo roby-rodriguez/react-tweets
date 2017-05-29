@@ -1,5 +1,3 @@
 {
-  "auth": {
-    "callbackURL": "https://react-tweets-roby-rodriguez.c9users.io/login/twitter/callback"
-  }
+  "callbackURL": "https://react-tweets-roby-rodriguez.c9users.io/login/twitter/callback"
 }
