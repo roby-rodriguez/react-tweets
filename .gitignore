@@ -9,6 +9,7 @@ logs
 *.out
 *.zip
 *.gz
+*.rdb
 
 # dependencies
 node_modules

@@ -5,8 +5,6 @@ const TwitterStrategy = passport.Strategy
 
 module.exports = function (passport) {
 
-    console.log(config)
-
     passport.use('twitter', new TwitterStrategy({
         consumerKey: config.consumer_key,
         consumerSecret: config.consumer_secret,

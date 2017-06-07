@@ -2,10 +2,12 @@
 
 import path from 'path'
 import express from 'express'
-import session from 'express-session'
+import expressSession from 'express-session'
 import ejs from 'ejs'
 import morgan from 'morgan'
+import redis from 'redis'
 import passport from 'passport'
+import passportSocketIo from 'passport.socketio'
 import mongoose from 'mongoose'
 import webpack from 'webpack'
 import webpackMiddleware from 'webpack-dev-middleware'
@@ -18,6 +20,7 @@ import routes from "./src/routers"
 import config from "./webpack.config"
 import apiRoutes from "./app/apiRoutes"
 import configureStore from "./src/store"
+import socketHandler from "./app/socket/handler"
 import NotFoundPage from "./src/components/NotFoundPage"
 
 const isDeveloping = process.env.NODE_ENV !== 'production'
@@ -25,11 +28,17 @@ const port = process.env.PORT || 1337
 const address = process.env.IP || 'localhost'
 
 const app = express()
-app.use(session({
+const RedisStore = require('connect-redis')(expressSession)
+const client = redis.createClient()
+const sessionStore = new RedisStore({ client })
+const session = expressSession({
+  store: sessionStore,
   secret: 'shhsecret',
   resave: false,
+  // don't recreate session for every request
   saveUninitialized: false
-}))
+})
+app.use(session)
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(morgan('dev'))
@@ -100,15 +109,16 @@ if (isDeveloping) {
   })
 }
 
-const server = app.listen(port, address, err => {
+var server = require('http').createServer(app)
+var io = require('socket.io')(server)
+
+io.use(passportSocketIo.authorize({
+  secret: 'shhsecret',
+  store: sessionStore,
+}))
+
+io.on('connection', socket => socketHandler(socket))
+server.listen(port, address, err => {
   if (err) console.error(err)
   console.info('Magic happens on %s:%s...', address, port)
 })
-
-// hook socket.io into express
-var io = require('socket.io').listen(server)
-// setup socket.io to use express session middleware
-io.use((socket, next) => session(socket.request, {}, next))
-// setup socket.io
-var socketHandler = require('./app/socket/handler')(io)
-io.sockets.on('connection', socketHandler)
