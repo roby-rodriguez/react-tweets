@@ -44,7 +44,7 @@ const query = (state = {
             })
         case QUERY_TWEETS_RESPONSE:
             return Object.assign({}, state, {
-                tweets: [...action.payload.statuses],
+                tweets: [...action.payload],
                 isFetching: false
             })
             return
@@ -66,25 +66,23 @@ const stream = (state = {
 }, action) => {
     switch (action.type) {
         case STREAM_TWEETS_START:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 tweets: [],
-                isFetching: true
-            })
+                isFetching: false
+            }
         case STREAM_TWEETS_STOP:
-            return Object.assign({}, state, {
-                error: action.payload,
-                isFetching: false
-            })
         case STREAM_TWEETS_ERROR:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 error: action.payload,
                 isFetching: false
-            })
+            }
         case STREAM_TWEETS_RECEIVED:
-            return Object.assign({}, state, {
-                tweets: [...action.payload.tweet]
-            })
-            return
+            return {
+                ...state,
+                tweets: [ ...state.tweets, action.payload ]
+            }
         default:
             return state
     }

@@ -20,11 +20,19 @@ module.exports = function(socket) {
         socket.on('stream:start', query => {
             const search = Util.getStreamQuery(query)
             stream = TwitterAPI.stream('statuses/filter', search)
-            stream.on('data', tweet => {
-                console.log("Event tweet: ")
-                console.log(tweet)
-                socket.emit('stream:tweet', tweet)
-            })
+            stream.on('data', tweet => socket.emit('stream:tweet', {
+                id: tweet.id_str,
+                userName: tweet.user.screen_name,
+                displayName: tweet.user.name,
+                avatarUrl: tweet.user.profile_image_url,
+                created: tweet.created_at,
+                text: tweet.text,
+                favorited: tweet.favorite_count,
+                retweeted: tweet.retweet_count,
+                // TODO implement - from mashape sentiment-analysis API
+                confidence: "96.7434",
+                sentiment: "Positive",
+            }))
             stream.on('limit', message => {
                 console.log("Event limit: ")
                 console.log(message)

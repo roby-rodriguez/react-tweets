@@ -4,7 +4,7 @@ import Socket from "../../../socket"
 import nProgress from '../../../decorators/nProgress'
 import CollapsibleSection from "../CollapsibleSection"
 import SearchInput from "../SearchInput"
-import Tweets from "../../Tweet"
+import Tweets from "../../Tweets"
 import { HeadNavigation } from "../HeadNavigation"
 
 @nProgress

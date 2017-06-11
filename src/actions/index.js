@@ -84,5 +84,5 @@ export const searchTweets = search => (dispatch, state) => {
         credentials: 'same-origin'
     })
     .then(response => response.json())
-    .then(json => dispatch(queryResponse(json.data)))
+    .then(json => dispatch(queryResponse(json)))
 }

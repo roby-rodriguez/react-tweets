@@ -12,19 +12,25 @@ module.exports = {
                 const search = Util.getQuery(req.query)
                 return TwitterAPI.get('search/tweets', search)
             })
-            .then(tweets => {
-                return res
-                    .status(200)
-                    .json(tweets)
-                    .end()
-            }, err => {
-                console.warn(err)
-                return res
-                    .status(500)
-                    .json({
-                        error: err
-                    })
-                    .end()
-            })
+            .then(({ statuses }) => res
+                .status(200)
+                .json(statuses.map(tweet => ({
+                    id: tweet.id_str,
+                    userName: tweet.user.screen_name,
+                    displayName: tweet.user.name,
+                    avatarUrl: tweet.user.profile_image_url,
+                    created: tweet.created_at,
+                    text: tweet.text,
+                    favorited: tweet.favorite_count,
+                    retweeted: tweet.retweet_count,
+                })))
+                .end()
+            , err => res
+                .status(500)
+                .json({
+                    error: err
+                })
+                .end()
+            )
     }
 }
