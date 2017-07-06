@@ -5,6 +5,7 @@ export const QUERY_TWEETS_REQUEST   = 'QUERY_TWEETS_REQUEST'
 export const QUERY_TWEETS_RESPONSE  = 'QUERY_TWEETS_RESPONSE'
 export const STREAM_TWEETS_START    = 'STREAM_TWEETS_START'
 export const STREAM_TWEETS_RECEIVED = 'STREAM_TWEETS_RECEIVED'
+export const STREAM_TWEETS_PROCESS  = 'STREAM_TWEETS_PROCESS'
 export const STREAM_TWEETS_ERROR    = 'STREAM_TWEETS_ERROR'
 export const STREAM_TWEETS_STOP     = 'STREAM_TWEETS_STOP'
 
@@ -41,6 +42,12 @@ export const tweetReceived = tweet => {
     return {
         type: STREAM_TWEETS_RECEIVED,
         payload: tweet
+    }
+}
+
+export const tweetProcessed = () => {
+    return {
+        type: STREAM_TWEETS_PROCESS
     }
 }
 

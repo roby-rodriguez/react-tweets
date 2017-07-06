@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
 import { reducer as form } from 'redux-form'
 import { LOGIN_USER, QUERY_TWEETS_REQUEST, QUERY_TWEETS_RESPONSE, STREAM_TWEETS_START, 
-    STREAM_TWEETS_RECEIVED, STREAM_TWEETS_ERROR, STREAM_TWEETS_STOP
+    STREAM_TWEETS_RECEIVED, STREAM_TWEETS_PROCESS, STREAM_TWEETS_ERROR, STREAM_TWEETS_STOP
 } from "../actions"
 
 /**
@@ -62,6 +62,7 @@ const query = (state = {
  */
 const stream = (state = {
     tweets: [],
+    current: null,
     isFetching: false
 }, action) => {
     switch (action.type) {
@@ -82,6 +83,18 @@ const stream = (state = {
             return {
                 ...state,
                 tweets: [ ...state.tweets, action.payload ]
+            }
+        case STREAM_TWEETS_PROCESS:
+            console.log("Exists: ")
+            let current = null, tweets = []
+            if (state.tweets.length) {
+                current = state.tweets.pop()
+                tweets = state.tweets.slice()
+            }
+            return {
+                ...state,
+                current,
+                tweets
             }
         default:
             return state

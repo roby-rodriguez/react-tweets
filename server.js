@@ -85,6 +85,7 @@ if (isDeveloping) {
             let markup, appState
             if (renderProps) {
               // TODO compute preloaded state je nach route
+              // FIXME ~/dashboard/stream doesn't load because of ws - fix it
               const preloadedState = {
               }
               let store = configureStore(preloadedState)

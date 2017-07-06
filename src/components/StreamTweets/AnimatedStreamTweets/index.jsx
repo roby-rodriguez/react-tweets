@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { Tweet } from "../Tweet"
+import { Tweet } from "../../Tweet"
 
-const Tweets = props =>
+const AnimatedStreamTweets = ({ tweets }) =>
     <ListGroup>
-       <ReactCSSTransitionGroup
-                         transitionName="tweet-stream"
-                         transitionEnterTimeout={0}
-                         transitionLeaveTimeout={0}
+        <ReactCSSTransitionGroup
+            transitionName="tweet-stream"
+            transitionEnterTimeout={0}
+            transitionLeave={false}
         >
             {
-                props.data.map(tweet =>
+                tweets.map(tweet =>
                     <ListGroupItem key={tweet.id}>
                         <Tweet
                             data={tweet}
@@ -22,8 +22,8 @@ const Tweets = props =>
         </ReactCSSTransitionGroup>
     </ListGroup>
 
-Tweets.propTypes = {
-    data: PropTypes.array.isRequired
+AnimatedStreamTweets.propTypes = {
+    tweets: PropTypes.array.isRequired
 }
 
-export default Tweets
+export { AnimatedStreamTweets }

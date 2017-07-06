@@ -18,6 +18,7 @@ module.exports = function(socket) {
             })
 
         socket.on('stream:start', query => {
+            const ARRAY_TO_REMOVE = ["Positive", "Neutral", "Negative"]
             const search = Util.getStreamQuery(query)
             stream = TwitterAPI.stream('statuses/filter', search)
             stream.on('data', tweet => socket.emit('stream:tweet', {
@@ -30,8 +31,9 @@ module.exports = function(socket) {
                 favorited: tweet.favorite_count,
                 retweeted: tweet.retweet_count,
                 // TODO implement - from mashape sentiment-analysis API
-                confidence: "96.7434",
-                sentiment: "Positive",
+                // don't just call the service yet -> return randoms and when it works replace this
+                confidence: Math.random() * 100 + '',
+                sentiment: ARRAY_TO_REMOVE[Math.floor(Math.random() * 3)],
             }))
             stream.on('limit', message => {
                 console.log("Event limit: ")
@@ -51,11 +53,11 @@ module.exports = function(socket) {
         })
 
         socket.on('stream:end', () => {
-            if (stream) stream.stop()
+            if (stream) stream.destroy()
         })
 
         socket.on('disconnect', () => {
-            if (stream) stream.stop()
+            if (stream) stream.destroy()
         })
     }
 }

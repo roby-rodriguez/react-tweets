@@ -1,0 +1,11 @@
+.tweet-stream-enter {
+    opacity: 0;
+    transform: scale(0);
+}
+.tweet-stream-enter.tweet-stream-enter-active {
+	opacity: 1;
+	transform:   translate(0,0);
+	transition-property: transform, opacity;
+	transition-duration: 500ms;
+	transition-timing-function: ease-in-out;
+}

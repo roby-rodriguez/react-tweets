@@ -34,3 +34,28 @@ export function parseTwitterDate(tdate) {
     if (diff <= 777600) {return "1 week ago";}
     return "on " + system_date;
 }
+
+export class Sequencer {
+	constructor(callback, timeout = 1000) {//500
+		this.callback = callback
+		this.timeout = timeout
+		this._running = true
+	}
+	start() {
+	    this._running = true
+		setTimeout(() => {
+			this.callback()
+			if (this._running)
+				this.start()
+		}, this.timeout)
+	}
+	update(newTimeout) {
+		this.timeout = newTimeout
+	}
+	reset() {
+	    this.timeout = 500
+	}
+	stop() {
+		this._running = false
+	}
+}

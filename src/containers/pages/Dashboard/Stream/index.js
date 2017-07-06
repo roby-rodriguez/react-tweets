@@ -1,12 +1,17 @@
 import { connect } from 'react-redux'
-import { streamTweets } from "../../../../actions"
+import { tweetProcessed } from "../../../../actions"
 import StreamComponent from "../../../../components/Dashboard/Stream"
 
 const mapStateToProps = state => ({
-    tweets: state.stream.tweets,
+    tweet: state.stream.current,
     isFetching: state.stream.isFetching
 })
 
+const mapDispatchToProps = dispatch => ({
+    processTweet: queryObj => { dispatch(tweetProcessed()) }
+})
+
 export default connect(
-    mapStateToProps,
+  mapStateToProps,
+  mapDispatchToProps
 )(StreamComponent)
