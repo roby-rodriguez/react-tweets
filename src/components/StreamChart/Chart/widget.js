@@ -59,7 +59,6 @@ class Widget {
                 .attr("fill", fill)
 
                 .attrTween("d", function (d) {
-                    // TODO check if this works
                     var interpolate = d3.interpolate(this._current, d)
                     this._current = interpolate(0)
                     return t => self.arc(interpolate(t))
@@ -72,8 +71,6 @@ class Widget {
                 .attr("fill", fill)
                 .text(parseInt(confidence) + "%")
                 .tween("text", function (d) {
-                    // TODO check if this stuff works with harrows
-                    //var self = d3.select(this)
                     var interpolate = d3.interpolateString(this._current || "0%", d)
                     this._current = d
                     return (t) => {
@@ -86,9 +83,7 @@ class Widget {
             .transition()
                 .duration(2000)
                 .ease("circleInOut")
-                // TODO replace with type "text"
                 .text(Sentiment[sentiment])
-                // TODO maybe also needs to be replaced with dominant type value
                 .attr("fill", this.getSelectedFill({ sentiment, confidence: 100 }))
     }
 }

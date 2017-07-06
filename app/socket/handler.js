@@ -52,7 +52,7 @@ module.exports = function(socket) {
             })
         })
 
-        socket.on('stream:end', () => {
+        socket.on('stream:stop', () => {
             if (stream) stream.destroy()
         })
 

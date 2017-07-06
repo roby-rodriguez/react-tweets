@@ -17,7 +17,6 @@ export default class Stream extends Component {
     constructor(props, context) {
         super(props)
         this.socket = new Socket(context.store)
-        //this.sequencer = new Sequencer(() => this.props.processTweet())
         this.sequencer = new Sequencer(() => this.props.processTweet())
         this.state = {
         }
@@ -33,23 +32,11 @@ export default class Stream extends Component {
         this.sequencer.start()
     }
     handleStop = () => {
-        this.socket.end()
         this.setState({ hideInput: false })
-        // stop sequencer
-        //clearInterval(this.timer)
-        //delete this.timer
+        this.socket.stop()
         this.sequencer.stop()
     }
     showChart = () => {
-/*        
-        if (typeof this.timer === 'undefined') {
-            this.timer = setInterval(() => {
-                console.log("CURRENT TWEET: ")
-                console.log(this.props.currentTweet)
-                this.props.processTweet()
-            }, 1000)   
-        }
-*/
         this.sequencer.update(1000)
     }
     hideChart = () => {
@@ -74,7 +61,7 @@ export default class Stream extends Component {
 
                         <i className="glyphicon glyphicon-flash bg-fade"></i>
 
-                        <CollapsibleSection title="Criteria" forcedClose={this.state.hideInput}>
+                        <CollapsibleSection title="Criteria" open={!this.state.hideInput}>
                             <SearchInput onSubmit={this.handleSearch} />
                         </CollapsibleSection>
 
@@ -82,8 +69,8 @@ export default class Stream extends Component {
                             <StreamChart tweet={this.props.tweet} />
                         </CollapsibleSection>
 
-                        <CollapsibleSection title="Results" hidden={this.props.tweet === null}>
-                            <StreamTweets tweet={this.props.tweet} />
+                        <CollapsibleSection title="Results" hidden={this.props.tweet === null} open={this.state.hideInput}>
+                            <StreamTweets tweet={this.props.tweet} total={3} />
                             <p> <a className="btn btn-danger btn-lg btn-outline btn-rounded" onClick={this.handleStop}>Stop</a> </p>
                             <p> <a className="btn btn-primary btn-lg btn-outline btn-rounded" href="https://dev.twitter.com/streaming/overview">Learn more</a> </p>
                         </CollapsibleSection>

@@ -32,7 +32,7 @@ export default class Home extends Component {
                         <p>Filter out from among the most recent tweets. See what's trending right now.</p>
                         <ul>
                             <li>browse the live stream</li>
-                            <li>view a graph of most popular hastags or trends</li>
+                            <li>view a graph of the users opinion inferred from hashtags or trends (using a third-party sentiment analysis tool)</li>
                         </ul>
                     </Jumbotron>
                 </div>

@@ -6,12 +6,12 @@ export default class CollapsibleSection extends Component {
         super(props)
         this.toggle = this.toggle.bind(this)
         this.state = {
-            //open: true
+            open: !!props.open
         }
     }
-    componentWillReceiveProps({ forcedClose, ...props }) {
-        if (forcedClose)
-            this.setState({ open: false })
+    componentWillReceiveProps({ open, ...props }) {
+        if (typeof open !== 'undefined')
+            this.setState({ open })
     }
     toggle() {
         if (!this.state.open) {

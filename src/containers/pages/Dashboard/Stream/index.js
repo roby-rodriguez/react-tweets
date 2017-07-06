@@ -3,7 +3,7 @@ import { tweetProcessed } from "../../../../actions"
 import StreamComponent from "../../../../components/Dashboard/Stream"
 
 const mapStateToProps = state => ({
-    tweet: state.stream.current,
+    tweet: state.stream.isFetching ? state.stream.current : null,
     isFetching: state.stream.isFetching
 })
 

@@ -1,24 +1,5 @@
 import { Sentiment } from "./types"
 
-/*
-const getSelectedFill = ({ selection, dominant, type, value }) => {
-  const c = value / 100
-  if (selection) {
-    switch (type) {
-      case '1':
-        return `rgba(46, 125, 50, ${c})`
-      case '0':
-        return `rgba(0, 184, 212, ${c})`
-      case '-1':
-        return `rgba(211, 47, 47, ${c})`
-    }
-  }
-  if (type === dominant)
-    return `rgba(2, 119, 189, ${c})`
-  return `rgba(55, 71, 79, ${c})`
-}
-*/
-
 const getSelectedFill = queue => ({ sentiment, confidence }) => {
   const c = confidence / 100
   if (queue.selectionExists()) {

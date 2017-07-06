@@ -70,14 +70,19 @@ const stream = (state = {
             return {
                 ...state,
                 tweets: [],
-                isFetching: false
+                isFetching: true
             }
         case STREAM_TWEETS_STOP:
+            console.log("Stopped: ")
+            return {
+                ...state,
+                current: null,
+                isFetching: false
+            }
         case STREAM_TWEETS_ERROR:
             return {
                 ...state,
-                error: action.payload,
-                isFetching: false
+                error: action.payload
             }
         case STREAM_TWEETS_RECEIVED:
             return {
@@ -85,7 +90,6 @@ const stream = (state = {
                 tweets: [ ...state.tweets, action.payload ]
             }
         case STREAM_TWEETS_PROCESS:
-            console.log("Exists: ")
             let current = null, tweets = []
             if (state.tweets.length) {
                 current = state.tweets.pop()

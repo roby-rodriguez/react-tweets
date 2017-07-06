@@ -16,9 +16,9 @@ class Socket {
         console.log(query)
         this.socket.emit('stream:start', query)
     }
-    end() {
+    stop() {
         this.store.dispatch(stopStream())
-        this.socket.emit('stream:end')
+        this.socket.emit('stream:stop')
     }
 }
 
