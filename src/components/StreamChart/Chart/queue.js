@@ -48,7 +48,11 @@ class Queue {
      */
     getWidgetData() {
         const data = this.getDisplayData()
-        return data.reduce((acc, cur) => acc + cur) / data.length
+        const average = data.reduce((acc, cur) => +cur.confidence + acc, 0) / data.length
+        return {
+            sentiment: this.selectionExists() ? this.selected : this.dominant.sentiment,
+            confidence: average
+        }
     }
     isDominant(sentiment) {
         return this.dominant.sentiment === sentiment

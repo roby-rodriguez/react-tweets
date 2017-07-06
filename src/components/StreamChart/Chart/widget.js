@@ -45,9 +45,10 @@ class Widget {
     /**
      * Widget displays dominant or selected
      */
-    update({confidence, sentiment}) {
+    update() {
         const self = this
-        const fill = this.getSelectedFill(sentiment, confidence)
+        const { confidence, sentiment } = this.queue.getWidgetData()
+        const fill = this.getSelectedFill({ sentiment, confidence })
         this.g
             .datum([confidence])
             .selectAll("path")
@@ -77,7 +78,7 @@ class Widget {
                     this._current = d
                     return (t) => {
                         const updated = Math.floor(interpolate(t)) + "%"
-                        return this.text(updated)
+                        return d3.select(this).text(updated)
                     }
                 })
         this.g
@@ -88,7 +89,7 @@ class Widget {
                 // TODO replace with type "text"
                 .text(Sentiment[sentiment])
                 // TODO maybe also needs to be replaced with dominant type value
-                .attr("fill", getSelectedFill(sentiment, 100))
+                .attr("fill", this.getSelectedFill({ sentiment, confidence: 100 }))
     }
 }
 

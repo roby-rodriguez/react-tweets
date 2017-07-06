@@ -19,6 +19,7 @@ class Chart {
         this.iteration = 0
         this.data = data
         this.maxDisplayItems = maxDisplayItems
+        this.widgetUpdateRate = widgetUpdateRate
         this.scale = new Scale(width, height, maxDisplayItems)
         this.queue = new Queue(this)
         this.bars = new Bar(this.queue, this.scale, this.chartSvg)
@@ -33,8 +34,8 @@ class Chart {
         const q = this.queue.dequeue()
         this.queue.enqueue(item)
 
-        if (this.iteration % this.widgetUpdateRate)
-            this.widget.update(this.queue.getWidgetData())
+        if (this.iteration % this.widgetUpdateRate === 0)
+            this.widget.update()
 
         this.init()
 
